@@ -1,15 +1,28 @@
-function verificar() {
-    let numero = Number(document.getElementById("numero").value);
-    let resultado = document.getElementById("resultado");
+function verificarPrimo() {
+  const numero = parseInt(document.getElementById('numero').value);
+  const resultado = document.getElementById('resultado');
 
-    if (numero > 0) {
-        resultado.textContent = "positivo";
-        resultado.style.color = "#22c55e";
-    } else if (numero < 0) {
-        resultado.textContent = "negativo";
-        resultado.style.color = "#ef4444";
-    } else {
-        resultado.textContent = "nulo";
-        resultado.style.color = "#eab308";
+  if (isNaN(numero)) {
+    resultado.textContent = 'Digite um número válido!';
+    resultado.style.color = '#f87171';
+    return;
+  }
+
+  if (numero < 2) {
+    resultado.textContent = 'N';
+    resultado.style.color = '#f87171';
+    return;
+  }
+
+  let ehPrimo = true;
+
+  for (let i = 2; i <= Math.sqrt(numero); i++) {
+    if (numero % i === 0) {
+      ehPrimo = false;
+      break;
     }
+  }
+
+  resultado.textContent = ehPrimo ? 'S' : 'N';
+  resultado.style.color = ehPrimo ? '#86efac' : '#f87171';
 }
